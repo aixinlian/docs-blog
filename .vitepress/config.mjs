@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-import { SearchPlugin } from "vitepress-plugin-search"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,15 +14,6 @@ export default defineConfig({
   vite: {
     // https://cn.vitejs.dev/config/shared-options.html#publicdir
     publicDir: "../public", // 指定 public 目录路径
-    plugins: [
-      SearchPlugin({
-        previewLength: 80, // 这个选项决定了搜索结果预览的长度，单位是字符数
-        buttonLabel: "搜索", // 这个选项可以用来改变搜索按钮的标签
-        placeholder: "搜索文档", // 这个选项可以用来设置搜索输入框的占位符
-        allow: [], // 这是一个数组，你可以在这个数组中指定哪些页面可以被搜索
-        ignore: [], // 这也是一个数组，你可以在这个数组中指定哪些页面不被搜索
-      }),
-    ],
   },
   markdown: {
     // 代码块风格
