@@ -3,6 +3,7 @@ import { SearchPlugin } from "vitepress-plugin-search"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/docs-blog/',
   lang: 'zh-Hans',
   langMenuLabel: '切换语言',
   darkModeSwitchLabel: '主题',
