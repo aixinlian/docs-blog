@@ -86,18 +86,22 @@ export default defineConfig({
     darkModeSwitchTitle: "切换到深色模式",
     sidebar: [
       {
-        text: 'Examples',
+        text: '工具',
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: 'Runtime API Examples', link: '/api-examples' },
         ]
       },
       {
         text: '技术栈',
-        collapsed: true,
+        collapsed: false,
         items: [
           { text: 'vitepress', link: '/技术栈/vitepress/index.md' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'docker', link: '/技术栈/docker/index.md' },
+          { text: 'nginx', link: '/技术栈/nginx/index.md' },
+          { text: 'vue3', link: '/技术栈/vue3/index.md' },
+          { text: 'react', link: '/技术栈/react/index.md' },
         ]
       }
     ],
