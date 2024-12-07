@@ -55,7 +55,16 @@ export default defineConfig({
     logo: "/svg/index.svg",
     nav: [
       { text: '首页', link: '/' },
-      { text: '例子', link: '/markdown-examples' }
+      { text: '例子', link: '/markdown-examples' },
+      {
+        text: '常见问题', items: [
+          { text: 'vue', link: '/常见问题/vue' },
+          { text: 'react', link: '/常见问题/react' },
+          { text: '小程序', link: '/常见问题/小程序' },
+          { text: 'ele-plus暗黑主题切换', link: '/常见问题/ele-plus暗黑主题切换' },
+        ]
+      },
+      { text: '代码提交格式', link: '/代码提交格式' },
     ],
     footer: {
       copyright: `版权所有 © 2019-${new Date().getFullYear()} Vue.js`,
@@ -90,18 +99,30 @@ export default defineConfig({
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: '软件分享', link: '/工具/软件分享/index' },
+          { text: 'vscood', link: '/工具/vscood/index' },
+          { text: 'monorepo', link: '/工具/monorepo/index' },
+          { text: '文档', link: '/工具/文档/index' },
         ]
       },
       {
-        text: '技术栈',
+        text: '知识库',
         collapsed: false,
         items: [
-          { text: 'vitepress', link: '/技术栈/vitepress/index.md' },
-          { text: 'docker', link: '/技术栈/docker/index.md' },
-          { text: 'nginx', link: '/技术栈/nginx/index.md' },
-          { text: 'vue3', link: '/技术栈/vue3/index.md' },
-          { text: 'react', link: '/技术栈/react/index.md' },
+          { text: 'vitepress', link: '/知识库/vitepress/index.md' },
+          { text: 'docker', link: '/知识库/docker/index.md' },
+          { text: 'nginx', link: '/知识库/nginx/index.md' },
+          { text: 'vue3', link: '/知识库/vue3/index.md' },
+          { text: 'react', link: '/知识库/react/index.md' },
+          { text: 'reactnative', link: '/知识库/reactnative/index.md' },
+          { text: 'typescript', link: '/知识库/typescript/index.md' },
+        ]
+      },
+      {
+        text: '其他',
+        items: [
+          { text: 'prettier统一代码格式', link: '/其他/prettier统一代码格式/index.md' },
+          { text: 'mockjs', link: '/其他/mockjs/index.md' },
         ]
       }
     ],
