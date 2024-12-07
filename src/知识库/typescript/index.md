@@ -1,5 +1,7 @@
 # typescript
 
+对象用 interface，其他用 type。
+
 ## tsconfig.json
 
 ### 初始化 tsconfig.json
@@ -29,7 +31,9 @@ tsc --init
 
 ```ts
 namespace 名称 {
-  namespace 名称 {}
+  namespace 名称 {
+    key: value
+  }
 }
 ```
 
@@ -178,6 +182,24 @@ jquery.a
 
 ## ts 类型
 
+### keyof any
+
+在对象中会用到`keyof any`，他的结果是`string | number | symbol`，因为对象的键只能是这些类型
+
+### keyof
+
+用于获取对象中的所有键
+
+```ts
+interface Person {
+  name?: string
+  age?: number
+  address?: string
+}
+
+type MyKeys = keyof Person // 'name' | 'age' | 'address'
+```
+
 ### unknown
 
 unknown 是 any 的安全类型
@@ -198,4 +220,293 @@ type string & unknown //string类型
 
 ## 内置类型
 
-###
+### Readonly
+
+将所有属性变为只读
+
+#### 使用
+
+```ts
+interface Person {
+  name?: string
+  age?: number
+  address?: string
+}
+
+type IPerson = Readonly<Person>
+
+let person: IPerson = {
+  name: 'John',
+  age: 30,
+  address: '123 Main St',
+}
+person.name = '1'
+```
+
+#### 原理
+
+```ts
+type Readonly<T> = {
+  readonly [K in keyof T]: T[K]
+}
+```
+
+### Partial
+
+将所有属性变为可选
+
+#### 使用
+
+```ts
+interface Person {
+  name: string
+  age: number
+  address: string
+}
+
+interface Company {
+  name: string
+  compay: Person
+}
+
+type ICompany = Partial<Company>
+
+const person: Company = { name: 'John' }
+```
+
+#### 原理
+
+```ts
+//内置的Partial只是浅层的，不会递归
+//没有递归
+type Partial<T> = {
+  [K in keyof T]?: T[K]
+}
+//递归
+type Partial<T> = {
+  [K in keyof T]?: T[K] extends object ? Partial<T[K]> : T[K]
+}
+```
+
+### Required
+
+将所有属性变为必选
+
+#### 使用
+
+```ts
+interface Person {
+  name?: string
+  age?: number
+  address?: string
+}
+
+type IPerson = Required<Person>
+
+const person: IPerson = {
+  name: 'John',
+  age: 30,
+  address: '123 Main St',
+}
+```
+
+#### 原理
+
+```ts
+type Required<T> = {
+  [K in keyof T]-?: T[K]
+}
+```
+
+### Pick
+
+从对象中挑选属性
+
+#### 使用
+
+```ts
+interface Person {
+  name: string
+  age: number
+  address: string
+}
+
+type MyPick = Pick<Person, 'name' | 'age'>
+```
+
+#### 原理
+
+```ts
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P]
+}
+```
+
+### Omit
+
+从类型中排除属性
+
+#### 使用
+
+```ts
+interface Person {
+  name: string
+  age: number
+  address: string
+}
+
+type MyOmit = Omit<Person, 'name'> & { name: string } //修改类型
+
+const names: MyOmit = { name: '', age: 5, address: '' }
+```
+
+#### 原理
+
+```ts
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+```
+
+### Record
+
+限定对象类型
+
+#### 使用
+
+```ts
+const Person: Record<string, any> = {
+  a: '1',
+  b: '2',
+}
+```
+
+#### 原理
+
+```ts
+type Record<K extends keyof any, T> = {
+  [P in K]: T
+}
+```
+
+### Exclude
+
+排除类型，返回新的类型
+
+#### 使用
+
+```ts
+type Person = 'name' | 'address' | 'age'
+
+type IPerson = Exclude<Person, 'address'>
+
+const person: IPerson = 'name'
+```
+
+#### 原理
+
+```ts
+type Exclude<T, U> = T extends U ? never : T
+```
+
+### Extract
+
+从类型中挑选类型
+
+#### 使用
+
+```ts
+type Person = 'name' | 'address' | 'age'
+
+type IPerson = Extract<Person, 'address'>
+
+const person: IPerson = 'address'
+```
+
+#### 原理
+
+```ts
+type Extract<T, U> = T extends U ? T : never
+```
+
+## 调用签名
+
+为了满足包含属性的函数，javascript 中函数就是一类特殊的对象
+
+```ts
+type Func = {
+  (s: number): boolean
+  description: string
+}
+
+function doSomething(fun: Func) {
+  fn(123)
+  fn.description //调用签名
+}
+```
+
+## 构造签名
+
+类似函数调用签名，不过多了一个 new 前缀
+
+```ts
+type Ctor = {
+  new (s: string): Date
+  (n: number): Date
+}
+
+function fn(ctor: Ctor) {
+  new ctor('hello')
+  ctor(123)
+}
+```
+
+## 函数重载
+
+某个函数可能要支持不同（个）参数的调用形式，或者参数一样类型不一样
+
+```ts
+function makeDate(timestamp: number): Date
+function makeDate(m: number, d: number, y: number): Date
+function makeDate(mOrtimestamp: number, d?: number, y?: number) {
+  if (d !== undefined && y !== undefined) {
+    return new Date(y, mOrtimestamp, d)
+  }
+  return new Date(mOrtimestamp)
+}
+
+makeDate(12345)
+makeDate(0, 1, 2023)
+```
+
+## 泛型函数
+
+泛型在函数名的后面,在调用的时候才会去推导类型
+
+```ts
+function fn<T>(arr: T[]): T | undefined {
+  return arr[0]
+}
+fn([1, 2, 3])
+```
+
+多泛型
+
+```ts
+function map<Input, Output>(arr: Input[], cb: (input: Input) => Output): Output[] {
+  return arr.map(cb)
+}
+```
+
+泛型约束
+
+```ts
+
+<T extends { length: number }> //T至少有一个属性是length
+
+function logest<T extends { length: number }>(a: T, b: T) {
+  if (a.length > b.length) {
+    return a
+  } else {
+    return b
+  }
+}
+```
