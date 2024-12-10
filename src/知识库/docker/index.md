@@ -536,3 +536,11 @@ volumes:
   prometheus-conf:
   grafana-data:
 ```
+
+## 在线 docker
+
+https://labs.play-with-docker.com/
+
+进入后可以获得四个小时的虚拟机环境，可以用来测试 docker 的各种功能。
+
+可以先将将 docker 推送到远程，然后在虚拟机中去拉取镜像

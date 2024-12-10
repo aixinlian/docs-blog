@@ -113,7 +113,12 @@ export default defineConfig({
           { text: 'docker', link: '/知识库/docker/index.md' },
           { text: 'nginx', link: '/知识库/nginx/index.md' },
           { text: 'vue3', link: '/知识库/vue3/index.md' },
-          { text: 'react', link: '/知识库/react/index.md' },
+          {
+            text: 'react', items: [
+              { text: 'hooks', link: '/知识库/react/hooks/index.md', },
+              { text: 'zustand', link: '/知识库/react/zustand/index.md', },
+            ]
+          },
           { text: 'reactnative', link: '/知识库/reactnative/index.md' },
           { text: 'typescript', link: '/知识库/typescript/index.md' },
         ]
@@ -123,6 +128,7 @@ export default defineConfig({
         items: [
           { text: 'prettier统一代码格式', link: '/其他/prettier统一代码格式/index.md' },
           { text: 'mockjs', link: '/其他/mockjs/index.md' },
+          { text: '常见问题', link: '/其他/常见问题/index.md' },
         ]
       }
     ],
