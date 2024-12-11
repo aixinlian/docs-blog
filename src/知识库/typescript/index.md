@@ -182,6 +182,10 @@ jquery.a
 
 ## ts 类型
 
+### 泛型
+
+泛型 T 可以设置默认值 `<T = string>`
+
 ### keyof any
 
 在对象中会用到`keyof any`，他的结果是`string | number | symbol`，因为对象的键只能是这些类型
@@ -509,4 +513,11 @@ function logest<T extends { length: number }>(a: T, b: T) {
     return b
   }
 }
+```
+
+## 获取数组类型
+
+```ts
+const arr = ['a', 100, true, 200]
+type T = (typeof arr)[number] // string | number | boolean
 ```

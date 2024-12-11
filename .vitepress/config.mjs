@@ -114,13 +114,14 @@ export default defineConfig({
           { text: 'nginx', link: '/知识库/nginx/index.md' },
           { text: 'vue3', link: '/知识库/vue3/index.md' },
           {
-            text: 'react', items: [
+            text: 'react', link: '/知识库/react/index.md', items: [
               { text: 'hooks', link: '/知识库/react/hooks/index.md', },
               { text: 'zustand', link: '/知识库/react/zustand/index.md', },
             ]
           },
           { text: 'reactnative', link: '/知识库/reactnative/index.md' },
           { text: 'typescript', link: '/知识库/typescript/index.md' },
+          { text: 'electron', link: '/知识库/electron/index.md' },
         ]
       },
       {
