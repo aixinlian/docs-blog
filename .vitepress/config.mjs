@@ -117,6 +117,7 @@ export default defineConfig({
             text: 'react', link: '/知识库/react/index.md', items: [
               { text: 'hooks', link: '/知识库/react/hooks/index.md', },
               { text: 'zustand', link: '/知识库/react/zustand/index.md', },
+              { text: 'router', link: '/知识库/react/router/index.md', },
             ]
           },
           { text: 'reactnative', link: '/知识库/reactnative/index.md' },

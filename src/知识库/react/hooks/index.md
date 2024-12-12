@@ -292,10 +292,6 @@ useLayoutEffect(setup, dependencies?)
 - useEffect 在组件渲染完毕之后执行，异步执行不阻塞
 - useLayoutEffect 在组件将要被渲染的时候执行，同步执行会阻塞
 
-## useInsertionEffect
-
-一般不用
-
 ## useRef
 
 - 获取 DOM 元素
@@ -364,12 +360,23 @@ export default App
 
 ## useImperativeHandle
 
-编写子组价的时候，通过 useImperativeHandle 暴露给父组件实例
+- 编写子组件的时候，通过 useImperativeHandle 暴露给父组件实例
+
+:::tip
+18 版本与 19 版本有些不同
+18版本需要用forwardRef包裹子组件
+
+19版本，子组件直接进行解构接收ref const Children = ({ref}:{ref:React.Ref})=>{}
+:::
 
 ### 基本用法
 
 ```tsx
-useImperativeHandle(ref, () => value)
+useImperativeHandle(ref, () => {
+  return {
+    // 暴露给父组件的方法或属性
+  }
+}, dependencies?)
 ```
 
 ### 示例
@@ -405,7 +412,100 @@ export default App
 
 ## useContext
 
+## memo
+
+防止组件重新渲染
+
+### 基本用法
+
+```tsx
+import React, { memo } from 'react'
+
+const MemoComponent = memo(() => {})
+```
+
+### 示例
+
+```tsx
+import React, { memo, useState } from 'react'
+import { Button } from 'antd'
+
+const App = () => {
+  console.log('app')
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <Button onClick={() => setCount((prev) => prev + 1)}>+1</Button>
+      <Children />
+    </>
+  )
+}
+
+const Children = memo(() => {
+  console.log('children')
+
+  return <div>children</div>
+})
+
+export default App
+```
+
 ## useMemo
+
+- 计算属性，缓存计算结果，避免重复计算
+
+React.memo
+
+- 子组件接收 props 参数，不管 props 哪个参数变化，都会重新渲染子组件
+- 子组件用 React.memo 包裹起来，可以优化渲染，只有当接收的 props 变化时才重新渲染子组件
+
+### 基本用法
+
+```tsx
+const memoizedValue = useMemo(callback, dependencies?)
+```
+
+### 示例
+
+```tsx
+import React, { FC, useState, useEffect, useMemo } from 'react'
+import { Button } from 'antd'
+
+export const Father: FC = () => {
+  const [count, setCount] = useState(0)
+  const [flag, setFlag] = useState(false)
+
+  const tips = useMemo(() => {
+    console.log('重新计算了tips')
+    return flag ? <p>哪里贵了，不要睁着研究说瞎话好不好</p> : <p>这些年没有努力工作，工资涨没涨</p>
+  }, [flag])
+
+  return (
+    <>
+      <h1>Count值：{count}</h1>
+      <h1>Flag值：{flag.toString()}</h1>
+      {tips}
+      <Button onClick={() => setCount((prev) => prev + 1)}>+1</Button>
+      <Button onClick={() => setFlag((prev) => !prev)}>Toggle</Button>
+      <Child num={count} />
+    </>
+  )
+}
+
+//子组件用React.memo包裹起来
+const Child: FC<{ num: number }> = React.memo(({ num }) => {
+  useEffect(() => {
+    console.log('重新渲染了子组件')
+  })
+  return (
+    <>
+      <p>----------------------------------</p>
+      <span>子组件接收的参数：{num}</span>
+    </>
+  )
+})
+```
 
 ## useCallback
 
