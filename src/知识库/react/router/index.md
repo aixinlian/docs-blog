@@ -97,7 +97,7 @@ const { id } = useParams()
 
 ```tsx
 import { useSearchParams } from 'react-router-dom'
-const [searchParams] = useSearchParams()
+const [searchParams, setSearchParams] = useSearchParams()
 const id = searchParams.get('id')
 ```
 

@@ -103,6 +103,7 @@ export default defineConfig({
           { text: 'vscood', link: '/工具/vscood/index' },
           { text: 'monorepo', link: '/工具/monorepo/index' },
           { text: '文档', link: '/工具/文档/index' },
+          { text: 'bun', link: '/工具/bun/index' },
         ]
       },
       {
@@ -123,6 +124,7 @@ export default defineConfig({
           { text: 'reactnative', link: '/知识库/reactnative/index.md' },
           { text: 'typescript', link: '/知识库/typescript/index.md' },
           { text: 'electron', link: '/知识库/electron/index.md' },
+          { text: 'nest', link: '/知识库/nest/index.md' },
         ]
       },
       {

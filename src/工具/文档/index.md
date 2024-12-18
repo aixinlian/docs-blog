@@ -11,3 +11,7 @@ https://www.tailwindcss.cn/
 ## vue-data-ui
 
 https://vue-data-ui.graphieros.com/
+
+## vscood 插件市场
+
+https://marketplace.visualstudio.com/vscode

@@ -158,3 +158,15 @@ ctrl+单击实现跳转
 ### ts 错误提示
 
 <img src="./img/ts-hint.png">
+
+### markdown 预览
+
+鼠标右击
+
+<img src="./img/markdown.png">
+
+### todo tree
+
+在需要处理的代码上面写`//TODO`,然后点击左侧图标就会显示所有的 todo 内容，方便跳转
+
+<img src="./img/todo-tree.png">

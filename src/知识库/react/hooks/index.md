@@ -364,9 +364,9 @@ export default App
 
 :::tip
 18 版本与 19 版本有些不同
-18版本需要用forwardRef包裹子组件
+18 版本需要用 forwardRef 包裹子组件
 
-19版本，子组件直接进行解构接收ref const Children = ({ref}:{ref:React.Ref})=>{}
+19 版本，子组件直接进行解构接收 ref const Children = ({ref}:{ref:React.Ref})=>{}
 :::
 
 ### 基本用法
@@ -411,6 +411,76 @@ export default App
 ```
 
 ## useContext
+
+跨组件通讯
+
+- 可以传递多个 Context，相同的值会覆盖
+- 18 版本需要加 Provider
+- 19 版本不需要加 Provider
+
+### 基本用法
+
+```tsx
+import React, { useContext } from 'react'
+
+const MyThemeContext = React.createContext({ theme: 'light' }) // 创建一个上下文
+function App() {
+  return (
+    //作为组件进行包裹
+    <MyThemeContext.Provider value={{ theme: 'light' }}>
+      <MyComponent />
+    </MyThemeContext.Provider>
+    //ThemeContext.Consumer里面包裹一个函数，不常用这种方法
+  )
+}
+function MyComponent() {
+  const themeContext = useContext(MyThemeContext) // 使用上下文
+  return <div>{themeContext.theme}</div>
+}
+
+export default App
+```
+
+### 示例
+
+```tsx
+import React, { useContext, useState, FC } from 'react'
+
+interface IThemeContext {
+  theme: string
+  setTheme: (theme: string) => void
+}
+
+const ThemeContext = React.createContext({} as IThemeContext) //创建全局上下文
+
+const App: FC = () => {
+  const [theme, setTheme] = useState('light')
+  return (
+    <>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <Parent />
+      </ThemeContext.Provider>
+    </>
+  )
+}
+
+const Parent: FC = () => {
+  const theme = useContext(ThemeContext)
+  console.log(theme)
+
+  return (
+    <>
+      <Children />
+    </>
+  )
+}
+
+const Children: FC = () => {
+  return <></>
+}
+
+export default App
+```
 
 ## memo
 

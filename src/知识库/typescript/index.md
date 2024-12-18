@@ -19,8 +19,25 @@ tsc --init
   "files": ["./src/demo1.ts"], // 指定具体编译的文件
   "include": ["./src"], // 指定编译目录或文件
   "exclude": ["node_modules", "**/*.spec.ts", "dist"], // 排除编译目录或文件
+  "extends": "./tsconfig.base.json", // 继承其他配置文件
   "compilerOptions": {
     //具体配置参见 https://www.tslang.cn/docs/handbook/compiler-options.html
+
+    "rootDir": "./src", //入口
+    "outDir": "./dist", //出口
+    "noImplicitAny": true, //在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true, //严格的空值检查
+    "strictFunctionTypes": true, //函数参数类型检查
+    "strictPropertyInitialization": true, //类的属性初始化检查
+    "noImplicitReturns": true, //不是函数的所有返回路径都有返回值时报错
+    "removeComments": true, //删除所有注释，除了以 /!* 开头的版权信息
+    "noUnusedLocals": true, //有未使用的变量时报错
+    "noUnusedParameters": true, //有未使用的参数时报错
+    "skipLibCheck": true, //忽略所有的声明文件（*.d.ts）的类型检查
+    "baseUrl": "./", //根目录
+    "paths": {
+      "@/*": ["src/*"] //路径映射
+    }
   }
 }
 ```
