@@ -113,7 +113,12 @@ export default defineConfig({
           { text: 'vitepress', link: '/知识库/vitepress/index.md' },
           { text: 'docker', link: '/知识库/docker/index.md' },
           { text: 'nginx', link: '/知识库/nginx/index.md' },
-          { text: 'vue3', link: '/知识库/vue3/index.md' },
+          {
+            text: 'vue3', link: '/知识库/vue3/index.md', items: [
+              { text: 'pinia', link: '/知识库/vue3/pinia/index.md', },
+              { text: 'router', link: '/知识库/vue3/router/index.md', },
+            ]
+          },
           {
             text: 'react', link: '/知识库/react/index.md', items: [
               { text: 'hooks', link: '/知识库/react/hooks/index.md', },

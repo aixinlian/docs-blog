@@ -15,3 +15,7 @@ https://vue-data-ui.graphieros.com/
 ## vscood 插件市场
 
 https://marketplace.visualstudio.com/vscode
+
+## 快捷键备忘录
+
+https://hotkeycheatsheet.com/zh
