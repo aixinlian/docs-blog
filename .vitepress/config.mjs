@@ -55,16 +55,9 @@ export default defineConfig({
     logo: "/svg/index.svg",
     nav: [
       { text: '首页', link: '/' },
-      { text: '例子', link: '/markdown-examples' },
-      {
-        text: '常见问题', items: [
-          { text: 'vue', link: '/常见问题/vue' },
-          { text: 'react', link: '/常见问题/react' },
-          { text: '小程序', link: '/常见问题/小程序' },
-          { text: 'ele-plus暗黑主题切换', link: '/常见问题/ele-plus暗黑主题切换' },
-        ]
-      },
-      { text: '代码提交格式', link: '/代码提交格式' },
+      { text: '例一', link: '/markdown-examples' },
+      { text: '例二', link: '/api-examples' },
+      { text: '代码提交格式', link: '/header/代码提交格式' },
     ],
     footer: {
       copyright: `版权所有 © 2019-${new Date().getFullYear()} Vue.js`,
@@ -95,15 +88,38 @@ export default defineConfig({
     darkModeSwitchTitle: "切换到深色模式",
     sidebar: [
       {
-        text: '工具',
+        text: '前端',
+        collapsed: false,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-          { text: '软件分享', link: '/工具/软件分享/index' },
-          { text: 'vscood', link: '/工具/vscood/index' },
-          { text: 'monorepo', link: '/工具/monorepo/index' },
-          { text: '文档', link: '/工具/文档/index' },
-          { text: 'bun', link: '/工具/bun/index' },
+          {
+            text: 'vue3', link: '/前端/vue3/index.md', items: [
+              { text: 'pinia', link: '/前端/vue3/pinia/index.md', },
+              { text: 'router', link: '/前端/vue3/router/index.md', },
+            ]
+          },
+          {
+            text: 'react', link: '/前端/react/index.md', items: [
+              { text: 'hooks', link: '/前端/react/hooks/index.md', },
+              { text: 'zustand', link: '/前端/react/zustand/index.md', },
+              { text: 'router', link: '/前端/react/router/index.md', },
+            ]
+          },
+          { text: 'reactnative', link: '/前端/reactnative/index.md' },
+          { text: 'electron', link: '/前端/electron/index.md' },
+          { text: 'typescript', link: '/前端/typescript/index.md' },
+          { text: '常见问题', link: '/前端/常见问题/index.md' },
+        ]
+      },
+      {
+        text: '服务端',
+        collapsed: false,
+        items: [
+          { text: 'pm2', link: '/服务端/pm2/index.md' },
+          { text: 'nginx', link: '/服务端/nginx/index.md' },
+          { text: 'docker', link: '/服务端/docker/index.md' },
+          { text: 'express', link: '/服务端/express/index.md' },
+          { text: 'nest', link: '/服务端/nest/index.md' },
+          { text: 'bun', link: '/服务端/bun/index' },
         ]
       },
       {
@@ -111,35 +127,20 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'vitepress', link: '/知识库/vitepress/index.md' },
-          { text: 'docker', link: '/知识库/docker/index.md' },
-          { text: 'nginx', link: '/知识库/nginx/index.md' },
-          {
-            text: 'vue3', link: '/知识库/vue3/index.md', items: [
-              { text: 'pinia', link: '/知识库/vue3/pinia/index.md', },
-              { text: 'router', link: '/知识库/vue3/router/index.md', },
-            ]
-          },
-          {
-            text: 'react', link: '/知识库/react/index.md', items: [
-              { text: 'hooks', link: '/知识库/react/hooks/index.md', },
-              { text: 'zustand', link: '/知识库/react/zustand/index.md', },
-              { text: 'router', link: '/知识库/react/router/index.md', },
-            ]
-          },
-          { text: 'reactnative', link: '/知识库/reactnative/index.md' },
-          { text: 'typescript', link: '/知识库/typescript/index.md' },
-          { text: 'electron', link: '/知识库/electron/index.md' },
-          { text: 'nest', link: '/知识库/nest/index.md' },
+          { text: 'monorepo', link: '/知识库/monorepo/index' },
+          { text: 'prettier统一代码格式', link: '/知识库/prettier统一代码格式/index.md' },
+          { text: 'mockjs', link: '/知识库/mockjs/index.md' },
         ]
       },
       {
-        text: '其他',
+        text: '常用',
+        collapsed: false,
         items: [
-          { text: 'prettier统一代码格式', link: '/其他/prettier统一代码格式/index.md' },
-          { text: 'mockjs', link: '/其他/mockjs/index.md' },
-          { text: '常见问题', link: '/其他/常见问题/index.md' },
+          { text: '软件分享', link: '/常用/软件分享/index' },
+          { text: 'vscood', link: '/常用/vscood/index' },
+          { text: '网址导航', link: '/常用/网址导航/index' },
         ]
-      }
+      },
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/aixinlian' }
