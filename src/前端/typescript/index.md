@@ -239,6 +239,29 @@ type string | unknown //unknown类型
 type string & unknown //string类型
 ```
 
+### Symbol 类型
+
+```ts
+//Symbol接收三个类型的值，string | number | undefined(什么都不写)
+let a1: symbol = Symbol(1) //唯一的
+let a2: symbol = Symbol(1) //唯一的
+console.log(a1 == a2) // false，因为他俩的内存地址不一样
+//for跟Symbol区别
+//Symbol，创建第一无二的，每次创建的地址都不一样
+//for会在全局的symbo中有没有全局注册过这个key，如果有会直接拿来用，不会创建，如果没有会去创建
+console.log(Symbol.for('aaa') === Symbol.for('aaa')) // true
+```
+
+### 枚举
+
+```ts
+enum Color3 {
+  red = 1,
+  blue = 5,
+  green = 'green',
+}
+```
+
 ## 内置类型
 
 ### Readonly

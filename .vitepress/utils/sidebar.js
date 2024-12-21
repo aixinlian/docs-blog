@@ -29,8 +29,8 @@ const sidebar = [
       { text: 'pm2', link: '/服务端/pm2/index.md' },
       { text: 'nginx', link: '/服务端/nginx/index.md' },
       { text: 'docker', link: '/服务端/docker/index.md' },
-      { text: 'express', link: '/服务端/express/index.md' },
       { text: 'nest', link: '/服务端/nest/index.md' },
+      { text: 'nest-copy', link: '/服务端/nest-copy/index.md' },
       { text: 'bun', link: '/服务端/bun/index' },
     ]
   },
@@ -38,10 +38,12 @@ const sidebar = [
     text: '知识库',
     collapsed: false,
     items: [
+      { text: 'node', link: '/知识库/node/index.md' },
       { text: 'vitepress', link: '/知识库/vitepress/index.md' },
       { text: 'monorepo', link: '/知识库/monorepo/index' },
       { text: 'prettier统一代码格式', link: '/知识库/prettier统一代码格式/index.md' },
       { text: 'mockjs', link: '/知识库/mockjs/index.md' },
+      { text: 'webpack', link: '/知识库/webpack/index.md' },
     ]
   },
   {
